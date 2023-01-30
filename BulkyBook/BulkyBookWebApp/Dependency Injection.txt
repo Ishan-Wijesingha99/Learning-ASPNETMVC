@@ -1,0 +1,14 @@
+
+Dependency Injection...
+Let's say we had a website with 3 different pages and we
+wanted to access the same database in all 3 pages, we also
+wanted to access the same objects in all 3 pages.
+
+It would be cumbersome to recreate those objects and the
+database connection for every page, so, we define those 
+objects and the database connection in the dependency
+injection container (DI container).
+
+This way, we don't have to redefine the objects or database
+connection, and we can just change the code in the DI
+container and that will change the code everywhere.
