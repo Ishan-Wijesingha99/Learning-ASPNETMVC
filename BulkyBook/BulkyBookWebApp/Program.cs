@@ -1,9 +1,17 @@
 // this is where the website is built
 
+
+// need this to access ApplicationDbContext, and need that for setting up database connection
+using BulkyBookWeb.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// this is for setting up database connection
+// we need the NuGet package Microsoft.EntityFrameworkCore.SqlServer to use UseSqlServer method
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer());
 
 // here we create an app, just like how we create an express app
 var app = builder.Build();

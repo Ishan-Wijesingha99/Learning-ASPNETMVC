@@ -1,3 +1,6 @@
+Notes...
+
+
 
 Dependency Injection...
 Let's say we had a website with 3 different pages and we
@@ -12,3 +15,9 @@ injection container (DI container).
 This way, we don't have to redefine the objects or database
 connection, and we can just change the code in the DI
 container and that will change the code everywhere.
+
+
+
+Accessing NuGet packages in Visual Studio Code...
+In VS, you don't open up a local folder, you open up a PROJECT/sin file, and open the .sin file associated with that project, VS processes it
+differently, in the former VS just sees it as a folder and nothing more, in the latter VS sees it as an actual app
