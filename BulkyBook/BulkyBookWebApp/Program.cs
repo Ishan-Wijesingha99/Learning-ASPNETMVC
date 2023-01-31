@@ -4,6 +4,9 @@
 // need this to access ApplicationDbContext, and need that for setting up database connection
 using BulkyBookWeb.Data;
 
+// need this to access UseSqlServer() method
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -11,7 +14,10 @@ builder.Services.AddControllersWithViews();
 
 // this is for setting up database connection
 // we need the NuGet package Microsoft.EntityFrameworkCore.SqlServer to use UseSqlServer method
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer());
+// DefaultConnection is from appsettings.json, where you created the connection string in one place to be used everywhere
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
+    builder.Configuration.GetConnectionString("DefaultConnection")
+));
 
 // here we create an app, just like how we create an express app
 var app = builder.Build();
