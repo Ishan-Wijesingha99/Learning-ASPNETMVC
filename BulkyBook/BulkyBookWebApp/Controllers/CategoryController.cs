@@ -37,6 +37,10 @@ namespace BulkyBookWebApp.Controllers
             return View(objCategoryList);
         }
 
+
+
+        // this is for creating a Category (GET and POST)
+
         // this will be the endpoint for /Category/Create
         // this will be a GET action method
         public IActionResult Create()
@@ -90,5 +94,57 @@ namespace BulkyBookWebApp.Controllers
 
             
         }
+
+
+
+        // this will be for updating/editing a Category (GET and POST)
+
+        // this will be the endpoint for /Category/Edit
+        // GET
+
+        // here we need the id of the Category so that we know which one to edit
+        public IActionResult Edit(int? id)
+        {
+            // check if user actually typed something in and that it's not 0
+            if(id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+            // here we retrieve a single table row from the database
+
+            // if we use .SingleOrDefault(), this returns a single row and will throw an exception if more than one row is returned, this method will return empty if no rows are found
+            // var categoryFromDb = _db.Categories.SingleOrDefault(u=>u.Id==id);
+
+            // if we use .Single(), this returns a single row and will throw an exception if no rows are found
+            // var categoryFromDb = _db.Categories.Single(id);
+
+            // if we use .FirstOrDefault(), this returns a single row, but if more than one row is found, it will only return the first one, not throwing an exception
+            // var categoryFromDb = _db.Categories.FirstOrDefault(u=>u.Id==id);
+
+            // if we use .First(), this returns a single row and will throw an exception if no rows are found
+            // var categoryFromDb = _db.Categories.First(id);
+
+            // we will be using .Find(), you pass in the primary id and it will find the row that has that primary key
+            var categoryFromDb = _db.Categories.Find(id);
+
+            // check if nothing was returned from the database
+            if(categoryFromDb == null)
+            {
+                return NotFound();
+            }
+
+            return View(categoryFromDb);
+        }
+
+        // POST
+        // this is for when the form is submitted
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Category obj)
+        {
+            return View();
+        }
+
     }
 }

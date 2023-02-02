@@ -25,6 +25,7 @@ namespace BulkyBookWebApp.Models
         // every row will have a DisplayOrder property (column value)
         // if we want to display a different name in the view rather than DisplayOrder, we do the following line of code
         [DisplayName("Display Order")]
+        // the line of code above is called a data annotation, and there are many different ones that you can find in the microsoft documentation
         public int DisplayOrder { get; set; }
 
         // every row will have a CreatedDateTime property (column value) which signifies the time it was created, just like MongoDB
