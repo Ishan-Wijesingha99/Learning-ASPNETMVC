@@ -26,6 +26,7 @@ namespace BulkyBookWebApp.Controllers
             // now we have access to the database, it's _db
         }
 
+        // this will be the endpoint for /Category/Index
         public IActionResult Index()
         {
 
@@ -34,6 +35,15 @@ namespace BulkyBookWebApp.Controllers
 
             // we can pass objCategoryList as an argument into View() so that it will be available in that particular View file
             return View(objCategoryList);
+        }
+
+        // this will be the endpoint for /Category/Create
+        // this will be a GET action method
+        public IActionResult Create()
+        {
+
+
+            return View();
         }
     }
 }
