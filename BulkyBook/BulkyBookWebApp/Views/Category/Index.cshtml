@@ -1,5 +1,7 @@
 ﻿
-@model IEnumerable<Category>
+<!-- in order to access what was passed into View(), you need this model statement -->
+<!-- you need to write the data type of whatever you passed into View(), in this case, we passed in a List -->
+@model List<Category>
 
 @{
     ViewData["Title"] = "Index";
@@ -7,6 +9,7 @@
 
 <h1>Index Category</h1>
 
+<!-- All this table, thead, tbody, tr, th stuff is bootstrap html that's all -->
 <table class="table table-bordered table-striped" style="width:100%">
 
     <thead>
@@ -22,7 +25,20 @@
     </thead>
 
     <tbody>
-        
+        <!-- a cshtml file is a mix of c# and html, we can actually use a c# foreach loop right here in the html and loop through the list we got from View() -->
+        <!-- each entree in the CategoryList is an object, and on that object, the columns are properties we can access -->
+        @foreach(var obj in Model)
+        {
+            <tr>
+                <td width="50%">
+                    @obj.Name
+                </td>
+
+                <td width="50%">
+                    @obj.DisplayOrder
+                </td>
+            </tr>
+        }
     </tbody>
 
 </table>
