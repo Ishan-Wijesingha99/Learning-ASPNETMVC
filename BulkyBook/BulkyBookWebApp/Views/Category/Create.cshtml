@@ -2,6 +2,7 @@
 @model Category
 
 
+
 <!-- here we will create a form that will POST the form data to the backend server, the backend server will then interact with the SQL database to INSERT that new category row -->
 <form method="POST">
     <div class="border p-3 mt-4">
@@ -11,6 +12,14 @@
             <hr />
         </div>
 
+        <!-- this part is for server-side validation, if we want to display all the errors in one place rather than under each input, we can do that as well -->
+        <!-- need to include asp-validation-summary="All" -->        
+        <div asp-validation-summary="All">
+
+        </div>
+
+
+
         <!-- for Name -->
         <div class="mb-3">
             <!-- asp-for just lets you access the properties of the model, and puts it as the innerHTML of the element -->
@@ -18,6 +27,11 @@
 
             <!-- because of asp-for used in this input, when this form is posted, it will know that this input is for the Name property -->
             <input asp-for="Name" class="form-control"/>
+
+            <!-- as long as we have asp-validation-for in this span, this html will only show when there is an error in the server-side validation -->
+            <!-- need to indicate the name of the Model, so in this case we're doing validation for Name -->
+            <!-- a default error message will be written inside the span as innerHTML -->
+            <span asp-validation-for="Name" class="text-danger"></span>
         </div>
 
         <!-- for DisplayOrder -->
@@ -27,6 +41,11 @@
 
             <!-- because of asp-for used in this input, when this form is posted, it will know that this input is for the Name property -->
             <input asp-for="DisplayOrder" class="form-control"/>
+
+            <!-- as long as we have asp-validation-for in this span, this html will only show when there is an error in the server-side validation -->
+            <!-- need to indicate the name of the Model, so in this case we're doing validation for DisplayOrder -->
+            <!-- a default error message will be written inside the span as innerHTML -->
+            <span asp-validation-for="DisplayOrder" class="text-danger"></span>
         </div>
 
         <!-- submit button and back button that takes you back to /Category/Index -->
@@ -39,3 +58,19 @@
 
     </div>
 </form>
+
+
+
+<!-- if we want to implement client-side validation, we can use jQuery client-side validation, the jQuery scripts are included in the Shared file in _ValidationScriptsPartial.csthml -->
+<!-- these jQuery client-side validations are just the stock-standard ones -->
+
+<!-- by convention, partial view files start with _ -->
+
+<!-- because our partial literally only contains scripts, we need to wrap it around a scripts section like this -->
+@section Scripts {
+    @{
+        <!-- this is all you have to do to include a partial view -->
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
+

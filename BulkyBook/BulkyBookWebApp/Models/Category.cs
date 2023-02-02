@@ -1,5 +1,7 @@
 ﻿
 // this is needed to access the [key] property in the class
+using Newtonsoft.Json;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 
@@ -21,6 +23,8 @@ namespace BulkyBookWebApp.Models
         public string Name { get; set; }
 
         // every row will have a DisplayOrder property (column value)
+        // if we want to display a different name in the view rather than DisplayOrder, we do the following line of code
+        [DisplayName("Display Order")]
         public int DisplayOrder { get; set; }
 
         // every row will have a CreatedDateTime property (column value) which signifies the time it was created, just like MongoDB
