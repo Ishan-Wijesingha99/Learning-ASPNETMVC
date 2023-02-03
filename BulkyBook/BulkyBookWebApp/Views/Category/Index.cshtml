@@ -3,9 +3,21 @@
 <!-- you need to write the data type of whatever you passed into View(), in this case, we passed in a List -->
 @model List<Category>
 
+
+
 @{
     ViewData["Title"] = "Index";
 }
+
+
+
+<!-- see if the success property on TempData is null, if not, display that message -->
+@if(TempData["success"] != null)
+{
+    <h2>@TempData["success"]</h2>
+}
+
+
 
 <!-- All this is bootstrap classes as well -->
 <div class="container p-3">
@@ -39,6 +51,10 @@
                 <th>
                     Display Order
                 </th>
+
+                <th>
+                    <!-- this is empty just for styling, check out the page and you'll see -->
+                </th>
             </tr>
         </thead>
 
@@ -54,6 +70,25 @@
 
                     <td width="50%">
                         @obj.DisplayOrder
+                    </td>
+
+                    <td>
+                        <div class="w-75 btn-group" role="group">
+
+                            <!-- because we are in a foreach loop, we can access obj from the database, and we can include obj even as a html attribute -->
+                            <!-- remember its {controller}/{action}/{id} -->
+
+                            <!-- this is the Edit button -->
+                            <a asp-controller="Category" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
+                                <i class="bi bi-pencil-square"></i> Edit
+                            </a>
+
+                            <!-- this is the Delete button -->
+                            <a asp-controller="Category" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger mx-2">
+                                <i class="bi bi-trash-fill"></i> Delete
+                            </a>
+
+                        </div>
                     </td>
                 </tr>
             }

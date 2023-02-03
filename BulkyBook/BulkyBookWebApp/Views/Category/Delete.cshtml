@@ -1,0 +1,54 @@
+﻿<!-- we can use model not just to access the arguments that were passed into View(), but we can also access Models -->
+@model Category
+
+
+
+<!-- here we will create a form that will POST the form data to the backend server, the backend server will then interact with the SQL database to DELETE a row in the database -->
+<!-- need to include asp-action="DeletePost" so that when it goes into Category controller (because this view is in the Category folder), it knows to execute the POST DeletePost function you defined -->
+<form method="POST" asp-action="DeletePost">
+
+    <!-- the DeletePost method which will be executed in the Category controller file is expecting an Id, this is how we give it that as an argument -->
+    <!-- keep it hidden because you don't want users to see it -->
+    <input asp-for="Id" hidden/>
+    
+    <div class="border p-3 mt-4">
+
+        <div class="row pb-2">
+            <h2 class="text-primary">Delete Category</h2>
+            <hr />
+        </div>
+
+        <!-- for Name, in the case of delete, you just want to display the name label but no point having an input, so disable it -->
+        <div class="mb-3">
+
+            <!-- asp-for just lets you access the properties of the model, and puts it as the innerHTML of the element -->
+            <label asp-for="Name"></label>
+
+            <!-- disable it -->
+            <input asp-for="Name" disabled class="form-control"/>
+
+        </div>
+
+        <!-- for DisplayOrder, in the case of delete, you just want to display the DisplayOrder label but no point having an input, so disable it -->
+        <div class="mb-3">
+
+            <!-- asp-for just lets you access the properties of the model, and puts it as the innerHTML of the element -->
+            <label asp-for="DisplayOrder"></label>
+
+            <!-- disable it -->
+            <input asp-for="DisplayOrder" disabled class="form-control"/>
+
+        </div>
+
+        <!-- submit button and back button that takes you back to /Category/Index -->
+        <div>
+            <button type="submit" class="btn btn-danger" style="width:150px">Delete</button>
+
+            <!-- just by specifying asp-controller and asp-action, it knows to take the user to /Category/Index -->
+            <a asp-controller="Category" asp-action="Index" class="btn btn-secondary" style="width:150px">Back to List</a>
+        </div>
+
+    </div>
+
+</form>
+
